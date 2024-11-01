@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ingredient" load_steps=2 format=3 uid="uid://bvf4orak6msq5"]
+
+[ext_resource type="Script" path="res://ingredient/ingredient.gd" id="1_rw6d8"]
+
+[resource]
+script = ExtResource("1_rw6d8")
+name = "earth"
+ingredients = Array[ExtResource("1_rw6d8")]([])
+color = Color(0, 0.388235, 1, 1)

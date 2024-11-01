@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ingredient" load_steps=2 format=3 uid="uid://cx4815dnmjp2f"]
+
+[ext_resource type="Script" path="res://ingredient/ingredient.gd" id="1_stvum"]
+
+[resource]
+script = ExtResource("1_stvum")
+name = "ether"
+ingredients = Array[ExtResource("1_stvum")]([])
+color = Color(0, 0.388235, 1, 1)

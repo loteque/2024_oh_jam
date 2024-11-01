@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ingredient" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ingredient.gd" id="1_unp0i"]
+
+[resource]
+script = ExtResource("1_unp0i")
+name = "SAMPLE"
+ingredients = Array[ExtResource("1_unp0i")]([])
+color = Color(1, 1, 1, 1)

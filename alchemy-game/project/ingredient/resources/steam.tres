@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ingredient" load_steps=4 format=3 uid="uid://behkatopicuhv"]
+
+[ext_resource type="Script" path="res://ingredient/ingredient.gd" id="1_yntq3"]
+[ext_resource type="Resource" uid="uid://5uukegsnjg2r" path="res://ingredient/resources/air.tres" id="2_1sstp"]
+[ext_resource type="Resource" uid="uid://cq3gl7ts0qrj8" path="res://ingredient/resources/water.tres" id="3_m7np6"]
+
+[resource]
+script = ExtResource("1_yntq3")
+name = "steam"
+ingredients = Array[ExtResource("1_yntq3")]([ExtResource("2_1sstp"), ExtResource("3_m7np6")])
+color = Color(0.486275, 0.635294, 0.733333, 1)
+order = 1

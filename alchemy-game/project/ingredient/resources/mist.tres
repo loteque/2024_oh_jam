@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ingredient" load_steps=4 format=3 uid="uid://bretspr6u5ibi"]
+
+[ext_resource type="Script" path="res://ingredient/ingredient.gd" id="1_lnkoi"]
+[ext_resource type="Resource" uid="uid://dyjy6u8w6aq6v" path="res://ingredient/resources/fire.tres" id="2_q5dyx"]
+[ext_resource type="Resource" uid="uid://cq3gl7ts0qrj8" path="res://ingredient/resources/water.tres" id="3_80kee"]
+
+[resource]
+script = ExtResource("1_lnkoi")
+name = "mist"
+ingredients = Array[ExtResource("1_lnkoi")]([ExtResource("2_q5dyx"), ExtResource("3_80kee")])
+color = Color(0.486275, 0.635294, 0.733333, 1)
+order = 1

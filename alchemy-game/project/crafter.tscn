@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://6fxpkiwcxgwd"]
+
+[ext_resource type="Script" path="res://ingredients_list.gd" id="1_x666a"]
+[ext_resource type="Script" path="res://ingredient/ingredient.gd" id="2_wx3to"]
+[ext_resource type="Resource" uid="uid://cq3gl7ts0qrj8" path="res://ingredient/resources/water.tres" id="3_3mgkr"]
+[ext_resource type="Resource" uid="uid://dyjy6u8w6aq6v" path="res://ingredient/resources/fire.tres" id="4_rd542"]
+
+[sub_resource type="Theme" id="Theme_awqqe"]
+Label/constants/outline_size = 4
+
+[node name="Crafter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_awqqe")
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="IngredientsList" type="HFlowContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+script = ExtResource("1_x666a")
+ingredients = Array[ExtResource("2_wx3to")]([ExtResource("3_3mgkr"), ExtResource("4_rd542")])
+metadata/_edit_lock_ = true
