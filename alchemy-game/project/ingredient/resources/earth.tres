@@ -6,4 +6,5 @@
 script = ExtResource("1_rw6d8")
 name = "earth"
 ingredients = Array[ExtResource("1_rw6d8")]([])
-color = Color(0, 0.388235, 1, 1)
+color = Color(1.20327e-07, 0.552708, 0.0691723, 1)
+order = 0

@@ -6,4 +6,5 @@
 script = ExtResource("1_rem6n")
 name = "air"
 ingredients = Array[ExtResource("1_rem6n")]([])
-color = Color(0, 0.388235, 1, 1)
+color = Color(1, 1, 1, 1)
+order = 0
