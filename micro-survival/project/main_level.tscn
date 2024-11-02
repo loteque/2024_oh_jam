@@ -1,0 +1,188 @@
+[gd_scene load_steps=16 format=3 uid="uid://ctg31nmbj8psi"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_7q265"]
+[ext_resource type="Script" path="res://player.gd" id="1_585jn"]
+[ext_resource type="Texture2D" uid="uid://caapuolmxiw4p" path="res://assets/art/greybox.png" id="1_eu058"]
+[ext_resource type="Script" path="res://pond.gd" id="4_ecb12"]
+[ext_resource type="Script" path="res://enemy.gd" id="5_ghdyc"]
+
+[sub_resource type="Theme" id="Theme_hb6qw"]
+Label/font_sizes/font_size = 10
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35pg5"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o60hl"]
+atlas = ExtResource("1_eu058")
+region = Rect2(0, -0.246381, 23.9253, 24.5262)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yyjfy"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly6f7"]
+atlas = ExtResource("1_eu058")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fs1n"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o6o7"]
+atlas = ExtResource("1_eu058")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bikfp"]
+radius = 12.0416
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt7ja"]
+atlas = ExtResource("1_eu058")
+region = Rect2(24, 25, 24, 23)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1ouy"]
+radius = 6.0
+height = 22.0
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 2
+script = ExtResource("1_7q265")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_hb6qw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Hydration: "
+
+[node name="ThirstBar" type="ProgressBar" parent="UI/Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="UI/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Health: "
+
+[node name="HealthBar" type="ProgressBar" parent="UI/Control/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+show_percentage = false
+
+[node name="GameOverContainer" type="VBoxContainer" parent="UI"]
+unique_name_in_owner = true
+process_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -29.0
+offset_right = 43.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/GameOverContainer"]
+layout_mode = 2
+text = "Game Over"
+
+[node name="StartButton" type="Button" parent="UI/GameOverContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+unique_name_in_owner = true
+position = Vector2(96, 72)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_585jn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_35pg5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(0, -12)
+texture = SubResource("AtlasTexture_o60hl")
+
+[node name="Detector" type="Area2D" parent="Player"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Detector"]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_yyjfy")
+
+[node name="Bush" type="Area2D" parent="." groups=["Bush"]]
+position = Vector2(65, 17)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bush"]
+texture = SubResource("AtlasTexture_ly6f7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bush"]
+shape = SubResource("CircleShape2D_4fs1n")
+
+[node name="Pond" type="Area2D" parent="." groups=["water"]]
+position = Vector2(26, 43)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_ecb12")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Pond"]
+texture = SubResource("AtlasTexture_7o6o7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pond"]
+shape = SubResource("CircleShape2D_bikfp")
+
+[node name="Enemy" type="StaticBody2D" parent="." groups=["Enemy"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("5_ghdyc")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Enemy"]
+texture = SubResource("AtlasTexture_mt7ja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k1ouy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="area_entered" from="Player/Detector" to="Player" method="_on_detector_area_entered"]
+[connection signal="area_exited" from="Player/Detector" to="Player" method="_on_detector_area_exited"]
+[connection signal="body_entered" from="Player/Detector" to="Player" method="_on_detector_body_entered"]
+[connection signal="body_exited" from="Player/Detector" to="Player" method="_on_detector_body_exited"]
+[connection signal="body_entered" from="Pond" to="Pond" method="_on_body_entered"]
+[connection signal="body_exited" from="Pond" to="Pond" method="_on_body_exited"]
