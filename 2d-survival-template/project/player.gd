@@ -29,8 +29,9 @@ func _physics_process(delta: float) -> void:
   if abs(velocity) > Vector2.ZERO and !is_moving:
     is_moving = true
     GlobalSignalBus.move_started.emit(self)
+    return
   
-  if velocity == Vector2.ZERO:
+  if velocity == Vector2.ZERO and is_moving:
     is_moving = false
     GlobalSignalBus.move_stopped.emit(self)
 
