@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var max_health = 100
 
 @onready var detector: Area2D = %Detector
-
 var is_dead := false
-    
+var is_moving := false
+
 var current_health = max_health:
   set(val):
     current_health = val
@@ -25,6 +25,15 @@ func _physics_process(delta: float) -> void:
   var input = Input.get_vector("left", "right", "up", "down").normalized()
   velocity = speed * input
   move_and_slide()
+
+  if abs(velocity) > Vector2.ZERO and !is_moving:
+    is_moving = true
+    GlobalSignalBus.move_started.emit(self)
+  
+  if velocity == Vector2.ZERO:
+    is_moving = false
+    GlobalSignalBus.move_stopped.emit(self)
+
 
 func die():
   is_dead = true
