@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=4 uid="uid://dmg0eb57keqxv"]
 
-[ext_resource type="Script" path="res://sfx_player.gd" id="1_jhwh1"]
+[ext_resource type="Script" path="res://sfx_player/sfx_player.gd" id="1_jhwh1"]
 [ext_resource type="Script" path="res://addons/godot_sfxr/SfxrStreamPlayer.gd" id="2_ogecx"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_3ylj5"]

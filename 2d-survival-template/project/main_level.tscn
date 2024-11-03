@@ -1,161 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctg31nmbj8psi"]
+[gd_scene load_steps=5 format=3 uid="uid://ctg31nmbj8psi"]
 
-[ext_resource type="Script" path="res://ui.gd" id="1_7q265"]
-[ext_resource type="Script" path="res://player.gd" id="1_585jn"]
-[ext_resource type="Texture2D" uid="uid://caapuolmxiw4p" path="res://assets/art/greybox.png" id="1_eu058"]
-[ext_resource type="Script" path="res://interactable.gd" id="4_ecb12"]
-[ext_resource type="PackedScene" uid="uid://b6adeviogiean" path="res://interactable.tscn" id="5_edi4b"]
-[ext_resource type="Script" path="res://enemy.gd" id="5_ghdyc"]
-
-[sub_resource type="Theme" id="Theme_hb6qw"]
-Label/font_sizes/font_size = 10
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35pg5"]
-radius = 8.0
-height = 26.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o60hl"]
-atlas = ExtResource("1_eu058")
-region = Rect2(0, -0.246381, 23.9253, 24.5262)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yyjfy"]
-radius = 7.0
-height = 26.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7o6o7"]
-atlas = ExtResource("1_eu058")
-region = Rect2(0, 24, 24, 24)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bikfp"]
-radius = 12.0416
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mt7ja"]
-atlas = ExtResource("1_eu058")
-region = Rect2(24, 25, 24, 23)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1ouy"]
-radius = 6.0
-height = 22.0
+[ext_resource type="PackedScene" uid="uid://dul8mhj7pomaw" path="res://ui/ui.tscn" id="1_g2uwy"]
+[ext_resource type="PackedScene" uid="uid://dii2c2yiu7w88" path="res://player/player.tscn" id="2_87xmn"]
+[ext_resource type="PackedScene" uid="uid://d0y0habehy3a2" path="res://enemy/enemy.tscn" id="4_ykdti"]
+[ext_resource type="PackedScene" uid="uid://b6adeviogiean" path="res://interactable/interactable.tscn" id="5_edi4b"]
 
 [node name="MainLevel" type="Node2D"]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" parent="." instance=ExtResource("1_g2uwy")]
 unique_name_in_owner = true
-layer = 2
-script = ExtResource("1_7q265")
 
-[node name="Control" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = SubResource("Theme_hb6qw")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Health" type="HBoxContainer" parent="UI/Control/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/Control/VBoxContainer/Health"]
-layout_mode = 2
-text = "Health: "
-
-[node name="HealthBar" type="ProgressBar" parent="UI/Control/VBoxContainer/Health"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 10)
-layout_mode = 2
-size_flags_vertical = 4
-show_percentage = false
-
-[node name="GameOverContainer" type="VBoxContainer" parent="UI"]
-unique_name_in_owner = true
-process_mode = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -29.0
-offset_right = 43.5
-offset_bottom = 29.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/GameOverContainer"]
-layout_mode = 2
-text = "Game Over"
-
-[node name="StartButton" type="Button" parent="UI/GameOverContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Start"
-
-[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+[node name="Player" parent="." instance=ExtResource("2_87xmn")]
 unique_name_in_owner = true
 position = Vector2(96, 72)
-collision_layer = 2
-collision_mask = 7
-script = ExtResource("1_585jn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, -13)
-shape = SubResource("CapsuleShape2D_35pg5")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(0, -12)
-texture = SubResource("AtlasTexture_o60hl")
-
-[node name="Detector" type="Area2D" parent="Player"]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 24
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Detector"]
-position = Vector2(0, -12)
-shape = SubResource("CapsuleShape2D_yyjfy")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-96, -72)
-position_smoothing_enabled = true
-
-[node name="Interactable" type="Area2D" parent="." groups=["Enemy", "Interactable"]]
-position = Vector2(26, 43)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("4_ecb12")
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactable"]
-texture = SubResource("AtlasTexture_7o6o7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-shape = SubResource("CircleShape2D_bikfp")
-
-[node name="Interactable2" parent="." instance=ExtResource("5_edi4b")]
+[node name="Interactable" parent="." instance=ExtResource("5_edi4b")]
 position = Vector2(26, 43)
 
-[node name="Enemy" type="StaticBody2D" parent="." groups=["Enemy"]]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("5_ghdyc")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Enemy"]
-texture = SubResource("AtlasTexture_mt7ja")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_k1ouy")
-
-[connection signal="area_entered" from="Player/Detector" to="Player" method="_on_detector_area_entered"]
-[connection signal="area_exited" from="Player/Detector" to="Player" method="_on_detector_area_exited"]
-[connection signal="body_entered" from="Player/Detector" to="Player" method="_on_detector_body_entered"]
-[connection signal="body_exited" from="Player/Detector" to="Player" method="_on_detector_body_exited"]
-[connection signal="body_entered" from="Interactable" to="Interactable" method="_on_body_entered"]
-[connection signal="body_exited" from="Interactable" to="Interactable" method="_on_body_exited"]
+[node name="Enemy" parent="." instance=ExtResource("4_ykdti")]
