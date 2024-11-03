@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var player: CharacterBody2D = %Player
+@export var player: CharacterBody2D
 @export var speed: int = 80
 
 func _physics_process(delta: float) -> void:
